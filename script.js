@@ -1,5 +1,6 @@
 let randNum;
 let mode;
+let guessNum = 0;
 
 function guessNumber(mode, randomNumber) {
   let guessedNumber = document.querySelector("#guessedNumber").value;
@@ -8,6 +9,8 @@ function guessNumber(mode, randomNumber) {
     alert("Please enter a number between 0 and 100.");
     return;
   }
+  guessNum += 1;
+  // document.querySelector("#guessNumSpan").textContent = guessNum;
   switch (mode) {
     case "normal":
       break;
@@ -23,17 +26,18 @@ function guessNumber(mode, randomNumber) {
           document.querySelector("#hintText").textContent = "";
         }, 2000);
       } else if (guessedNumber == randomNumber) {
-        document.querySelector("#hintText").textContent =
-          "You Guessed it Right! 🎉";
-          document.querySelector("#hintPara").style.display = "none";
-        document.querySelector("#numberGuessingContainer").style.display = "none";
+        document.querySelector(
+          "#winResult"
+        ).textContent = `You Guessed it Right in ${guessNum} guesses! 🎉`;
+        document.querySelector("#hintPara").style.display = "none";
+        document.querySelector("#numberGuessingContainer").style.display =
+          "none";
       }
       break;
   }
 }
 
 function playGame(modeName) {
-  let guessNum = 0;
   document.querySelector("#modesContainer").style.display = "none";
   document.querySelector("#numberGuessingContainer").style.display = "block";
 
