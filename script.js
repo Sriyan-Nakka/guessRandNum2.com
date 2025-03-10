@@ -32,6 +32,7 @@ function guessNumber(mode, randomNumber) {
         document.querySelector("#hintPara").style.display = "none";
         document.querySelector("#numberGuessingContainer").style.display =
           "none";
+
       }
       break;
   }
@@ -67,4 +68,9 @@ function playGame(modeName) {
       };
       break;
   }
+}
+
+function shareWin(){
+  let shareName = document.querySelector("#shareName").value;
+  
 }
