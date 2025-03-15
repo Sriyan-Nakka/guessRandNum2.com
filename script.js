@@ -69,6 +69,33 @@ function playGame(modeName) {
   }
 }
 
-function shareWin() {
+function shareWin(difficulty) {
   let shareName = document.querySelector("#shareName").value;
+  let congratsMessage = `${shareName} has guessed the random number in ${difficulty} mode!`;
+  switch (difficulty) {
+    case "Normal":
+      document.querySelector("#congratsMessageNormal").textContent =
+        congratsMessage;
+      document.querySelector("#congratsMessageNormal").style.display = "block";
+      document.querySelector("#congratsMessageHard").style.display = "none";
+      document.querySelector("#congratsMessageCustom").style.display = "none";
+      break;
+    case "Hard":
+      document.querySelector("#congratsMessageHard").textContent =
+        congratsMessage;
+      document.querySelector("#congratsMessageHard").style.display = "block";
+      document.querySelector("#congratsMessageNormal").style.display = "none";
+      document.querySelector("#congratsMessageCustom").style.display = "none";
+      break;
+    case "Custom":
+      document.querySelector("#congratsMessageCustom").textContent =
+        congratsMessage;
+      document.querySelector("#congratsMessageCustom").style.display = "block";
+      document.querySelector("#congratsMessageHard").style.display = "none";
+      document.querySelector("#congratsMessageNormal").style.display = "none";
+      break;
+  }
 }
+// guessNumberDisplay(currentGuessNum){
+//   console.log("work in progress...")
+// }
