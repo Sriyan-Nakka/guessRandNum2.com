@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Sai Sriyan Nakka" />
+    <meta
+      name="description"
+      content="An improved version of my random number guessing game!"
+    />
+    <link rel="shortcut icon" href="Favicons/192x192.ico" type="image/x-icon" />
+    <title>Guess The Random Number - 2</title>
+    <style>
+      .icon {
+        width: 40px;
+        transition: width ease-in-out 0.25s;
+      }
+      :root {
+        --palette-black: hsl(220, 4%, 14%, 0.95);
+        --palette-mid-green: #0f5132;
+        --palette-light-green: #088046;
+      }
+      @font-face {
+        font-family: "headFont";
+        src: url("Fonts/SigmarOne-Regular.woff") format("woff"),
+          url("Fonts/SigmarOne-Regular.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "bodyFont";
+        src: url("Fonts/Outfit-Regular.woff2") format("woff2"),
+          url("Fonts/Outfit-Regular.woff") format("woff");
+      }
+      .icon:hover {
+        width: 50px;
+      }
+      body {
+        font-size: 62.5%;
+        background-color: black;
+        color: white;
+        font-size: 1.6rem;
+        background-image: url("Images/background.webp");
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        text-align: center;
+        font-family: bodyFont, sans-serif;
+      }
+      footer {
+        font-size: 1.25rem;
+      }
+      a {
+        cursor: pointer;
+      }
+      #container,
+      footer {
+        background-color: var(--palette-black);
+        border: 2px solid white;
+      }
+      footer {
+        border-radius: 15px;
+        padding: 10px;
+      }
+      #container {
+        border-radius: 5px;
+        padding-bottom: 20px;
+      }
+      h1 {
+        text-decoration: underline;
+        color: var(--palette-light-green);
+        font-family: headFont, sans-serif;
+      }
+      b {
+        text-decoration: underline;
+      }
+      button {
+        font-size: 1.3rem;
+        border: 2px solid black;
+        border-radius: 10px;
+        transition: border ease-in-out 0.15s, font-size ease-in-out 0.15s;
+        font-weight: bold;
+        font-family: bodyFont, sans-serif;
+      }
+      button:hover {
+        cursor: pointer;
+        border: 3.5px solid black;
+        font-size: 1.5rem;
+      }
+      #normalModeButton {
+        background-color: yellow;
+      }
+      #hardModeButton {
+        background-color: red;
+      }
+      #customModeButton {
+        background-color: greenyellow;
+      }
+      input {
+        font-size: 1.3rem;
+        border: 3px solid black;
+        border-radius: 7px;
+        transition: border ease-in-out 0.15s;
+      }
+      input:hover {
+        border: 5px solid gray;
+      }
+      #hintPara,
+      #numberGuessingContainer {
+        display: none;
+      }
+      img {
+        width: 265px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="script.js" defer></script>
+    <div id="container">
+      <header><h1>Guess The Random Number - 2</h1></header>
+      <main>
+        <details>
+          <summary>How to play</summary>
+          <br />
+          Welcome to Guess The Random Number - 2! <br />
+          This is an improved version of the first one named "Random Number
+          Guessing Game". <br />
+          But this time, there are different modes. They are: <br />
+          <br />
+          <b>Normal Mode</b>: You have to guess a number between 1 to 100 and
+          there will be hints to help you figure out the randomly generated
+          number.<br />
+          <br />
+          <b>Hard Mode</b>: You have to guess a number between 1 to 100 but you
+          have to guess the number in atleast 10 guesses. If you exceed 20
+          guesses, you lose the game. There will be no hints given other than if
+          the guessed number is higher or lower than the random number.<br />
+          <br />
+          <b>Custom Mode</b>: In this mode, you can select a number between 1
+          and 100 and you can ask your friend to guess the number. You can give
+          hints to your friend to help them guess the number. It is like a
+          multiplayer mode in some way.<br />
+          <br />
+          Also, when you win, you can screenshot your win and share it with your
+          friends wen you click the share button after you win. <br />
+          Those are the modes and their rules. Hope you enjoy my game! :)
+        </details>
+        <br />
+        <div id="modesContainer">
+          <u>Select a mode:</u> <br />
+          <button id="normalModeButton" onclick="playGame('Normal');">
+            Normal
+          </button>
+          <br />
+          <button id="hardModeButton" onclick="playGame('Hard')">Hard</button>
+          <br />
+          <button id="customModeButton" onclick="playGame('Custom');">
+            Custom</button
+          ><br />
+          If your mode is custom, enter your selected number in the given
+          textbox:
+          <input id="customNumber" type="number" min="1" max="100" />
+        </div>
+        <div id="numberGuessingContainer">
+          <input type="number" id="guessedNumber" min="1" max="100" />
+          <button id="guessButton">Guess</button>
+        </div>
+        <p id="hintPara">
+          <u>Hint: </u>
+          <span id="hintText"></span>
+        </p>
+        <p id="winResult"></p>
+        If you want to share your win with friends, please enter your name in
+        the given textbox and click the share button:
+        <input id="shareName" type="text" /> <br />
+        <button id="shareButton" onclick="shareWin();">Share</button> <br />
+        <div id="normalScreenshotContainer">
+          <img
+            src="Images/animatedNormalTrophy.svg"
+            alt="winning animatedTrophy"
+          />
+        </div>
+        <div id="hardScreenshotContainer">
+          <img
+            src="Images/animatedHardTrophy.svg"
+            alt="winning animatedTrophy"
+          />
+        </div>
+        <div id="customScreenshotContainer">
+          <img
+            src="Images/animatedCustomTrophy.svg"
+            alt="winning animatedTrophy"
+          />
+        </div>
+      </main>
+    </div>
+    <hr />
+    <footer>
+      <center>
+        <a href="https://github.com/Sriyan-Nakka" target="_blank"
+          ><svg
+            class="icon github"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="white"
+              d="M12 1A10.89 10.89 0 0 0 1 11.77A10.79 10.79 0 0 0 8.52 22c.55.1.75-.23.75-.52v-1.83c-3.06.65-3.71-1.44-3.71-1.44a2.86 2.86 0 0 0-1.22-1.58c-1-.66.08-.65.08-.65a2.31 2.31 0 0 1 1.68 1.11a2.37 2.37 0 0 0 3.2.89a2.33 2.33 0 0 1 .7-1.44c-2.44-.27-5-1.19-5-5.32a4.15 4.15 0 0 1 1.11-2.91a3.78 3.78 0 0 1 .11-2.84s.93-.29 3 1.1a10.7 10.7 0 0 1 5.5 0c2.1-1.39 3-1.1 3-1.1a3.78 3.78 0 0 1 .11 2.84A4.15 4.15 0 0 1 19 11.2c0 4.14-2.58 5.05-5 5.32a2.5 2.5 0 0 1 .75 2v2.95c0 .35.2.63.75.52A10.8 10.8 0 0 0 23 11.77A10.89 10.89 0 0 0 12 1"
+            /></svg
+        ></a>
+        <a href="https://sriyan-blogs.blogspot.com/"
+          ><svg
+            class="icon blogger"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+          >
+            <path
+              fill="white"
+              d="M13 7a6 6 0 0 0-6 6v7a6 6 0 0 0 6 6h7a6 6 0 0 0 6-6v-5a1 1 0 0 0-1-1h-1a1 1 0 0 1-1-1a6 6 0 0 0-6-6zm0 5h4c.55 0 1 .45 1 1s-.45 1-1 1h-4c-.55 0-1-.45-1-1s.45-1 1-1m0 7h7c.55 0 1 .45 1 1s-.45 1-1 1h-7c-.55 0-1-.45-1-1s.45-1 1-1"
+            /></svg
+        ></a>
+        <br />
+        Background generated by ChatGPT. <br />
+        &copy;Copyright, Sai Sriyan Nakka 2025, All Rights Reserved.
+        <br />Version 0.331 <br />
+      </center>
+    </footer>
+  </body>
+</html>
