@@ -42,7 +42,7 @@ function guessNumber(mode, randomNumber) {
       } else if (guessedNumber == randomNumber) {
         document.querySelector(
           "#winResult"
-        ).textContent = `You Guessed it Right in ${guessNum} guesses! 🎉 Sreenshot the below container to share your victory with your friends!`;
+        ).textContent = `You Guessed it Right in ${guessNum} guesses! 🎉 Sreenshot the below container to share your victory with your friends! (Landscape mode recommended on mobile.)`;
         document.querySelector("#hintPara").style.display = "none";
         document.querySelector("#numberGuessingContainer").style.display =
           "none";
