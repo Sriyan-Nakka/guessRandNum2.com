@@ -24,7 +24,10 @@ function guessNumber(mode, randomNumber) {
         console.log("guessNum <= 10");
       } else {
         guessNum = 0;
-        // document.querySelector("#loseContainer").style.display = "block";
+        document.querySelector(
+          "#winResult"
+        ).textContent = `Sorry, you lost! The random number was ${randomNumber}. Click the below button to play again.`;
+        document.querySelector("#playAgainButton").style.display = "block";
         document.querySelector("#hintPara").style.display = "none";
         document.querySelector("#numberGuessingContainer").style.display =
           "none";
@@ -42,7 +45,8 @@ function guessNumber(mode, randomNumber) {
       } else if (guessedNumber == randomNumber) {
         document.querySelector(
           "#winResult"
-        ).textContent = `You Guessed it Right in ${guessNum} guesses! 🎉 Sreenshot the below container to share your victory with your friends! (Landscape mode recommended on mobile.)`;
+        ).textContent = `You Guessed it Right in ${guessNum} guesses! 🎉 Screenshot the below container to share your victory with your friends! (Landscape mode recommended on mobile.) Or click the below button to play again.`;
+        document.querySelector("#playAgainButton").style.display = "block";
         document.querySelector("#hintPara").style.display = "none";
         document.querySelector("#numberGuessingContainer").style.display =
           "none";
@@ -119,4 +123,17 @@ function playGame(modeName) {
 // }
 function guessNumberDisplay(currentGuessNum) {
   document.querySelector("#guessNumSpan").textContent = currentGuessNum;
+}
+
+function playAgainFunction() {
+  document.querySelector("#playAgainButton").style.display = "none";
+  document.querySelector("#congratsMessageHard").style.display = "none";
+  document.querySelector("#congratsMessageNormal").style.display = "none";
+  document.querySelector("#congratsMessageCustom").style.display = "none";
+  document.querySelector("#normalScreenshotContainer").style.display = "none";
+  document.querySelector("#hardScreenshotContainer").style.display = "none";
+  document.querySelector("#customScreenshotContainer").style.display = "none";
+  document.querySelector("#winResult").textContent = "";
+  document.querySelector("#guessedNumber").value = "";
+  document.querySelector("#modesContainer").style.display = "block";
 }
