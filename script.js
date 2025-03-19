@@ -1,3 +1,16 @@
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("sw.js")
+    .then((registration) => {
+      console.log("SW registered");
+      console.log(registration);
+    })
+    .catch((error) => {
+      console.log("SW Registration failed");
+      console.log(error);
+    });
+}
+
 let shareName = window.prompt(
   "Enter your name in the given textbox. It will be used to display your name in the winning card."
 );

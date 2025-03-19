@@ -1,0 +1,37 @@
+{
+  "name": "Guess The Random Number - 2",
+  "short_name": "Guess Number - 2",
+  "description": "A reworked version of Random Number Guessing Game!",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#222325",
+  "theme_color": "#0f5132",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "Favicons/192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "Favicons/16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "Favicons/20x20.png",
+      "type": "image/png",
+      "sizes": "20x20"
+    },
+    {
+      "src": "Favicons/24x24.png",
+      "type": "image/png",
+      "sizes": "24x24"
+    },
+    {
+      "src": "Favicons/32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    }
+  ]
+}
