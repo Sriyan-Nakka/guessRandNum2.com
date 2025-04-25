@@ -11,26 +11,22 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-let shareName = window.prompt(
-  "Enter your name in the given textbox. It will be used to display your name in the winning card."
-);
-
-console.log(shareName);
-
-if (shareName == null || shareName == "") {
-  for (let i = 0; i < 10000; i++) {
-    shareName = window.prompt(
-      "Enter your name in the given textbox. It will be used to display your name in the winning card."
-    );
-    console.log(shareName);
-    if (shareName != null && shareName != "") {
-      break;
-    }
-  }
-}
+let shareName;
 let randNum;
 let mode;
 let guessNum = 0;
+let customNumber;
+
+while (true) {
+  shareName = window.prompt(
+    "Enter your name in the given textbox. It will be used to display your name in the winning card."
+  );
+  console.log(shareName);
+
+  if (shareName !== null && shareName !== "") {
+    break;
+  }
+}
 
 function guessNumber(mode, randomNumber) {
   let guessedNumber = document.querySelector("#guessedNumber").value;
@@ -268,25 +264,47 @@ function playGame(modeName) {
       };
       break;
     case "Custom":
-      let customNumber = Number(
-        window.prompt(
-          "Enter a number between 1 and 100. After you enter, pass the device to your friend."
-        )
-      );
+      // let customNumber = Number(
+      //   window.prompt(
+      //     "Enter a number between 1 and 100. After you enter, pass the device to your friend."
+      //   )
+      // );
 
-      console.log(customNumber);
+      // console.log(customNumber);
 
-      if (isNaN(customNumber) || customNumber == "") {
-        for (let i = 0; i < 10000; i++) {
-          customNumber = Number(
-            window.prompt(
-              "Enter a number between 1 and 100. After you enter, pass the device to your friend."
-            )
-          );
+      // if (isNaN(customNumber) || customNumber == "") {
+      //   for (let i = 0; i < 10000; i++) {
+      //     customNumber = Number(
+      //       window.prompt(
+      //         "Enter a number between 1 and 100. After you enter, pass the device to your friend."
+      //       )
+      //     );
+      //     console.log(customNumber);
+      //     if (!isNaN(customNumber) && customNumber != "") {
+      //       break;
+      //     }
+      //   }
+      // }
+      while (true) {
+        customNumber = Number(
+          window.prompt(
+            "Enter a number between 1 and 100. After you enter, pass the device to your friend."
+          )
+        );
+
+        if (
+          customNumber !== null &&
+          customNumber !== "" &&
+          !isNaN(customNumber) &&
+          customNumber > 0 &&
+          customNumber <= 100
+        ) {
           console.log(customNumber);
-          if (!isNaN(customNumber) && customNumber != "") {
-            break;
-          }
+          break;
+        } else {
+          alert(
+            "Invalid number. Please enter a valid number between 1 and 100."
+          );
         }
       }
       document.querySelector("#hintPara").style.display = "block";
